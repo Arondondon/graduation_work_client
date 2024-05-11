@@ -78,7 +78,6 @@ class Testing:
                                      self.tests_passed_in_total, self.last_progress + local_progress)
 
                 print(images[i]["uri"], images[j]["uri"], expected_result, actual_result)
-                time.sleep(1)
 
     def calculate_local_progress(self, tests_left_in_section: int, tests_in_section: int):
         return ((tests_in_section - tests_left_in_section) * 100) // tests_in_section // self.sections_in_total
