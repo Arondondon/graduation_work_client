@@ -19,7 +19,10 @@ from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout,
     QLabel, QProgressBar, QPushButton, QSizePolicy,
     QVBoxLayout, QWidget)
 
+
 class Ui_testingProgressDialog(object):
+
+
     def setupUi(self, testingProgressDialog):
         if not testingProgressDialog.objectName():
             testingProgressDialog.setObjectName(u"testingProgressDialog")
@@ -29,12 +32,6 @@ class Ui_testingProgressDialog(object):
 "color: white;\n"
 "\n"
 "")
-        self.cancelButton = QPushButton(testingProgressDialog)
-        self.cancelButton.setObjectName(u"cancelButton")
-        self.cancelButton.setGeometry(QRect(90, 280, 231, 41))
-        self.cancelButton.setStyleSheet(u"background: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(100, 20, 30, 253), stop:1 rgba(200, 60, 80, 255));\n"
-"border: 1px solid rgba(255, 255, 255, 40);\n"
-"font-size: 14pt;")
         self.mainFrame = QFrame(testingProgressDialog)
         self.mainFrame.setObjectName(u"mainFrame")
         self.mainFrame.setGeometry(QRect(20, 20, 371, 251))
@@ -52,7 +49,7 @@ class Ui_testingProgressDialog(object):
         self.firstStat.addWidget(self.firstStatName)
 
         self.firstStatValue = QLabel(self.mainFrame)
-        self.firstStatValue.setObjectName(u"vfirstStatValue")
+        self.firstStatValue.setObjectName(u"firstStatValue")
         self.firstStatValue.setStyleSheet(u"qproperty-alignment: AlignRight;")
 
         self.firstStat.addWidget(self.firstStatValue)
@@ -120,6 +117,13 @@ class Ui_testingProgressDialog(object):
 
         self.verticalLayout.addWidget(self.progressBar)
 
+        self.startButton = QPushButton(testingProgressDialog)
+        self.startButton.setObjectName(u"startButton")
+        self.startButton.setGeometry(QRect(140, 280, 131, 41))
+        self.startButton.setStyleSheet(u"background: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 100, 30, 253), stop:1 rgba(60, 200, 80, 255));\n"
+"border: 1px solid rgba(255, 255, 255, 40);\n"
+"font-size: 16pt;\n"
+"border-radius: 7;")
 
         self.retranslateUi(testingProgressDialog)
 
@@ -128,7 +132,6 @@ class Ui_testingProgressDialog(object):
 
     def retranslateUi(self, testingProgressDialog):
         testingProgressDialog.setWindowTitle(QCoreApplication.translate("testingProgressDialog", u"Testing Progress", None))
-        self.cancelButton.setText(QCoreApplication.translate("testingProgressDialog", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
         self.firstStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u0412\u0441\u0435\u0433\u043e \u0440\u0430\u0437\u0434\u0435\u043b\u043e\u0432:", None))
         self.firstStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
         self.secondStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u041d\u043e\u043c\u0435\u0440 \u0440\u0430\u0437\u0434\u0435\u043b\u0430:", None))
@@ -137,5 +140,6 @@ class Ui_testingProgressDialog(object):
         self.thirdStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
         self.fourthStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u0412\u0441\u0435\u0433\u043e \u043f\u0440\u043e\u0439\u0434\u0435\u043d\u043e \u0442\u0435\u0441\u0442\u043e\u0432:", None))
         self.fourthStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
+        self.startButton.setText(QCoreApplication.translate("testingProgressDialog", u"\u0421\u0442\u0430\u0440\u0442", None))
     # retranslateUi
 

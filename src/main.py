@@ -3,6 +3,7 @@ import time
 
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtCore import QRunnable, QThreadPool, Slot
 
 from src.actions.testing import Testing
 from src.actions.server_requests import ServerConnection
@@ -42,12 +43,21 @@ class TestingMainWindow(QMainWindow):
         self.new_testing_progress_window = QtWidgets.QDialog()
         self.ui_testing_progress_window.setupUi(self.new_testing_progress_window)
 
-        command = self.ui.cmdLineEdit.text()
+        self.ui_testing_progress_window.firstStatValue.setText('0')
+        self.ui_testing_progress_window.secondStatValue.setText('0')
+        self.ui_testing_progress_window.thirdStatValue.setText('0')
+        self.ui_testing_progress_window.fourthStatValue.setText('0')
+        self.ui_testing_progress_window.progressBar.setValue(0)
 
+        self.ui_testing_progress_window.startButton.clicked.connect(self.start_testing)
         self.new_testing_progress_window.show()
-        time.sleep(2)
-        self.testing.start(command)
+
+        #self.testing.start(command)
         #self.new_testing_progress_window.close()
+
+    def start_testing(self):
+        command = self.ui.cmdLineEdit.text()
+        self.testing.start(command)
 
     def add_property_to_list(self):
         text = self.ui_send_image_window.optionsComboBox.currentText()

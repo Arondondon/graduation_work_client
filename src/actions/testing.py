@@ -26,7 +26,6 @@ class Testing:
         self.failed_tests = []
         self.failed_tests_in_sections_count = []
 
-
     def start(self, cmd: str):
         self.failed_tests.clear()
         self.failed_tests_in_sections_count = [0] * self.sections_in_total
@@ -56,7 +55,7 @@ class Testing:
             else:
                 i += 1
 
-        tests_in_total = (len(images) * len(images)) // 2
+        tests_in_total = (len(images) * (len(images) - 1)) // 2
         tests_left_in_section = tests_in_total
         local_progress = self.calculate_local_progress(tests_left_in_section, tests_in_total)
 
