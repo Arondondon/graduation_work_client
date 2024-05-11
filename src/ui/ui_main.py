@@ -16,8 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QLabel, QLineEdit, QListView, QMainWindow,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_mainWindow(object):
     def setupUi(self, mainWindow):
@@ -108,13 +109,21 @@ class Ui_mainWindow(object):
 
         self.verticalLayout_2.addLayout(self.optionsLayout)
 
-        self.optionsListView = QListView(self.optionsFrame)
-        self.optionsListView.setObjectName(u"optionsListView")
-        self.optionsListView.setStyleSheet(u"background: rgba(255, 255, 255, 30);\n"
+        self.optionsListWidget = QListWidget(self.optionsFrame)
+        self.optionsListWidget.setObjectName(u"optionsListWidget")
+        self.optionsListWidget.setStyleSheet(u"background: rgba(255, 255, 255, 30);\n"
 "border: 1px solid rgba(255, 255, 255, 40);")
+        self.optionsListWidget.setItemAlignment(Qt.AlignmentFlag.AlignLeading)
 
-        self.verticalLayout_2.addWidget(self.optionsListView)
+        self.verticalLayout_2.addWidget(self.optionsListWidget)
 
+        self.uploadButton = QPushButton(self.centralWidget)
+        self.uploadButton.setObjectName(u"uploadButton")
+        self.uploadButton.setGeometry(QRect(10, 540, 151, 21))
+        self.uploadButton.setStyleSheet(u"background: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(117, 23, 23, 255), stop:1 rgba(119, 120, 146, 255));\n"
+"border: 1px solid rgba(255, 255, 255, 40);\n"
+"font-size: 8pt;\n"
+"border-radius: 7;")
         mainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(mainWindow)
@@ -133,5 +142,6 @@ class Ui_mainWindow(object):
 
         self.addButton.setText(QCoreApplication.translate("mainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.deleteButton.setText(QCoreApplication.translate("mainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.uploadButton.setText(QCoreApplication.translate("mainWindow", u"\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435", None))
     # retranslateUi
 

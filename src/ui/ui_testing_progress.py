@@ -51,11 +51,11 @@ class Ui_testingProgressDialog(object):
 
         self.firstStat.addWidget(self.firstStatName)
 
-        self.vfirstStatValue = QLabel(self.mainFrame)
-        self.vfirstStatValue.setObjectName(u"vfirstStatValue")
-        self.vfirstStatValue.setStyleSheet(u"qproperty-alignment: AlignRight;")
+        self.firstStatValue = QLabel(self.mainFrame)
+        self.firstStatValue.setObjectName(u"vfirstStatValue")
+        self.firstStatValue.setStyleSheet(u"qproperty-alignment: AlignRight;")
 
-        self.firstStat.addWidget(self.vfirstStatValue)
+        self.firstStat.addWidget(self.firstStatValue)
 
 
         self.verticalLayout.addLayout(self.firstStat)
@@ -130,7 +130,7 @@ class Ui_testingProgressDialog(object):
         testingProgressDialog.setWindowTitle(QCoreApplication.translate("testingProgressDialog", u"Testing Progress", None))
         self.cancelButton.setText(QCoreApplication.translate("testingProgressDialog", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
         self.firstStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u0412\u0441\u0435\u0433\u043e \u0440\u0430\u0437\u0434\u0435\u043b\u043e\u0432:", None))
-        self.vfirstStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
+        self.firstStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
         self.secondStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u041d\u043e\u043c\u0435\u0440 \u0440\u0430\u0437\u0434\u0435\u043b\u0430:", None))
         self.secondStatValue.setText(QCoreApplication.translate("testingProgressDialog", u"\u0427\u0438\u0441\u043b\u043e", None))
         self.thirdStatName.setText(QCoreApplication.translate("testingProgressDialog", u"\u041e\u0441\u0442\u0430\u043b\u043e\u0441\u044c \u0442\u0435\u0441\u0442\u043e\u0432 \u0432 \u0440\u0430\u0437\u0434\u0435\u043b\u0435:", None))

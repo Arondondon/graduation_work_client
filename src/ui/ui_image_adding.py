@@ -16,8 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QHBoxLayout, QLabel, QLineEdit, QListView,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+    QHBoxLayout, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QPushButton, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_sendImageDialog(object):
     def setupUi(self, sendImageDialog):
@@ -139,12 +140,12 @@ class Ui_sendImageDialog(object):
 
         self.verticalLayout_2.addLayout(self.optionsLayout)
 
-        self.optionsListView = QListView(self.optionsFrame)
-        self.optionsListView.setObjectName(u"optionsListView")
-        self.optionsListView.setStyleSheet(u"background: rgba(255, 255, 255, 30);\n"
+        self.optionsListWidget = QListWidget(self.optionsFrame)
+        self.optionsListWidget.setObjectName(u"optionsListWidget")
+        self.optionsListWidget.setStyleSheet(u"background: rgba(255, 255, 255, 30);\n"
 "border: 1px solid rgba(255, 255, 255, 40);")
 
-        self.verticalLayout_2.addWidget(self.optionsListView)
+        self.verticalLayout_2.addWidget(self.optionsListWidget)
 
 
         self.verticalLayout_3.addWidget(self.optionsFrame)
