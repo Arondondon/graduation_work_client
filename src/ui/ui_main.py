@@ -63,12 +63,13 @@ class Ui_mainWindow(object):
 
         self.optionsFrame = QFrame(self.centralWidget)
         self.optionsFrame.setObjectName(u"optionsFrame")
-        self.optionsFrame.setGeometry(QRect(230, 160, 371, 265))
+        self.optionsFrame.setGeometry(QRect(180, 160, 471, 265))
         self.optionsFrame.setStyleSheet(u"background: rgba(255. 255. 255. 0);\n"
 "margin: 0;\n"
 "border-radius: 7;")
         self.verticalLayout_2 = QVBoxLayout(self.optionsFrame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, -1, 0, -1)
         self.optionsLabel = QLabel(self.optionsFrame)
         self.optionsLabel.setObjectName(u"optionsLabel")
         self.optionsLabel.setStyleSheet(u"qproperty-alignment: AlignCenter;\n"
@@ -77,11 +78,13 @@ class Ui_mainWindow(object):
         self.verticalLayout_2.addWidget(self.optionsLabel)
 
         self.optionsLayout = QHBoxLayout()
+        self.optionsLayout.setSpacing(3)
         self.optionsLayout.setObjectName(u"optionsLayout")
         self.optionsComboBox = QComboBox(self.optionsFrame)
         self.optionsComboBox.addItem("")
         self.optionsComboBox.addItem("")
         self.optionsComboBox.setObjectName(u"optionsComboBox")
+        self.optionsComboBox.setMinimumSize(QSize(300, 0))
         self.optionsComboBox.setStyleSheet(u"background: rgba(255, 255, 255, 30);\n"
 "border: 1px solid rgba(255, 255, 255, 40);")
 
@@ -91,6 +94,7 @@ class Ui_mainWindow(object):
         self.buttonsLayout.setObjectName(u"buttonsLayout")
         self.addButton = QPushButton(self.optionsFrame)
         self.addButton.setObjectName(u"addButton")
+        self.addButton.setMinimumSize(QSize(80, 0))
         self.addButton.setStyleSheet(u"background: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 100, 30, 253), stop:1 rgba(60, 200, 80, 255));\n"
 "border: 1px solid rgba(255, 255, 255, 40);")
 
@@ -98,6 +102,7 @@ class Ui_mainWindow(object):
 
         self.deleteButton = QPushButton(self.optionsFrame)
         self.deleteButton.setObjectName(u"deleteButton")
+        self.deleteButton.setMinimumSize(QSize(80, 0))
         self.deleteButton.setStyleSheet(u"background: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(100, 20, 30, 253), stop:1 rgba(200, 60, 80, 255));\n"
 "border: 1px solid rgba(255, 255, 255, 40);")
 
@@ -137,8 +142,8 @@ class Ui_mainWindow(object):
         self.cmdLabel.setText(QCoreApplication.translate("mainWindow", u"\u041a\u043e\u043c\u0430\u043d\u0434\u0430 \u0434\u043b\u044f \u0437\u0430\u043f\u0443\u0441\u043a\u0430 \u0442\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b", None))
         self.cmdLineEdit.setText("")
         self.optionsLabel.setText(QCoreApplication.translate("mainWindow", u"\u041e\u043f\u0446\u0438\u0438", None))
-        self.optionsComboBox.setItemText(0, QCoreApplication.translate("mainWindow", u"first", None))
-        self.optionsComboBox.setItemText(1, QCoreApplication.translate("mainWindow", u"second", None))
+        self.optionsComboBox.setItemText(0, QCoreApplication.translate("mainWindow", u"Testing with tag PARTLY_COVERED_FACE", None))
+        self.optionsComboBox.setItemText(1, QCoreApplication.translate("mainWindow", u"Simple Testing", None))
 
         self.addButton.setText(QCoreApplication.translate("mainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.deleteButton.setText(QCoreApplication.translate("mainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))

@@ -28,6 +28,7 @@ class TestingMainWindow(QMainWindow):
         self.ui_testing_progress_window = Ui_testingProgressDialog()
         self.ui.startButton.clicked.connect(self.open_testing_window)
         self.ui.addButton.clicked.connect(self.add_testing_option_to_list)
+        self.ui.deleteButton.clicked.connect(self.delete_testing_option_from_list)
 
         self.ui_results_window = Ui_resultsDialog()
 
@@ -40,6 +41,7 @@ class TestingMainWindow(QMainWindow):
         self.ui_send_image_window.setupUi(self.new_adding_image_window)
         self.conn.set_options_lists_for_image_adding(self.ui_send_image_window)
         self.ui_send_image_window.addButton.clicked.connect(self.add_image_property_to_list)
+        self.ui_send_image_window.deleteButton.clicked.connect(self.delete_image_property_from_list)
         self.ui_send_image_window.sendButton.clicked.connect(self.add_new_image_to_send)
         self.new_adding_image_window.show()
 
@@ -72,7 +74,17 @@ class TestingMainWindow(QMainWindow):
 
     def add_image_property_to_list(self):
         text = self.ui_send_image_window.optionsComboBox.currentText()
-        self.image_properties_items.append(text)
+        if text not in self.image_properties_items:
+            self.image_properties_items.append(text)
+        self.ui_send_image_window.optionsListWidget.clear()
+        for text in self.image_properties_items:
+            item = QtWidgets.QListWidgetItem(text)
+            self.ui_send_image_window.optionsListWidget.addItem(item)
+
+    def delete_image_property_from_list(self):
+        text = self.ui_send_image_window.optionsComboBox.currentText()
+        if text in self.image_properties_items:
+            self.image_properties_items.remove(text)
         self.ui_send_image_window.optionsListWidget.clear()
         for text in self.image_properties_items:
             item = QtWidgets.QListWidgetItem(text)
@@ -87,6 +99,15 @@ class TestingMainWindow(QMainWindow):
             item = QtWidgets.QListWidgetItem(option)
             self.ui.optionsListWidget.addItem(item)
 
+    def delete_testing_option_from_list(self):
+        text = self.ui.optionsComboBox.currentText()
+        if text in self.testing_options_items:
+            self.testing_options_items.remove(text)
+        self.ui.optionsListWidget.clear()
+        for option in self.testing_options_items:
+            item = QtWidgets.QListWidgetItem(option)
+            self.ui.optionsListWidget.addItem(item)
+
     def add_new_image_to_send(self):
         path = self.ui_send_image_window.fileLineEdit.text()
         name = self.ui_send_image_window.nameComboBox.currentText()
@@ -96,7 +117,6 @@ class TestingMainWindow(QMainWindow):
         self.conn.send_image(path, name, properties)
         self.ui_send_image_window.optionsListWidget.clear()
         self.image_properties_items.clear()
-        #self.new_adding_image_window.close()
 
 
 if __name__ == "__main__":

@@ -47,6 +47,18 @@ class Testing:
             properties[10]
         ]))
 
+        self.INITIAL_TEXTS_FOR_RESULTS = dict(zip(self.TESTING_OPTIONS, [
+            "Simple testing is a testing method that uses images in which the person's face is clearly legible \n\n",
+            "Testing with tag GRIMACE is a testing method that uses images in which a person with an unusual facial expression\n\n",
+            "Testing with tag HEADDRESS is a testing method that uses images in which a person is wearing a headdress\n\n",
+            "Testing with tag FACE_TURNED_AWAY is a testing method that uses images in which a person is partially turned away from the viewer\n\n",
+            "Testing with tag PHOTO is a testing method that uses images which contains only a photo of a person, and not the person himself\n\n",
+            "Testing with tag BAD_LIGHT is a testing method that uses images which were taken in poor lighting\n\n",
+            "Testing with tag POOR_QUALITY is a testing method that uses images with poor quality (low resolution, etc.)\n\n",
+            "Testing with tag PARTLY_COVERED_FACE is a testing method that uses images in which a person's face is partially covered by something\n\n",
+            "Testing with tag ADVERSARIAL_ATTACK is a testing method that uses images in which a person’s face is painted in a special way or something is pasted onto it in order to bypass facial recognition systems\n\n"
+        ]))
+
         self.sections_in_total = 0
         self.current_section_number = 0
         self.tests_passed_in_total = 0
@@ -54,8 +66,8 @@ class Testing:
         self.cmd = ""
         self.failed_tests = []
         self.failed_tests_in_sections_count = []
-        self.texts_for_results = []
         self.current_testing_options = []
+        self.texts_for_results = []
 
     def get_testing_options(self) -> [str]:
         return self.TESTING_OPTIONS
@@ -65,9 +77,11 @@ class Testing:
         self.failed_tests.clear()
         self.cmd = cmd
         self.sections_in_total = len(testing_options)
+        self.failed_tests_in_sections_count.clear()
         self.failed_tests_in_sections_count = [0] * self.sections_in_total
         self.tests_passed_in_total = 0
         self.update_progress(self.sections_in_total, 1, 0, 0, 0)
+        self.texts_for_results.clear()
 
         for i in range(self.sections_in_total):
             self.current_section_number = i + 1
@@ -103,7 +117,7 @@ class Testing:
         self.update_progress(self.sections_in_total, self.current_section_number, tests_left_in_section,
                              self.tests_passed_in_total, self.last_progress + local_progress)
 
-        st = (option == "Simple Testing")
+        st = (option == "Simple Testing")  # simple testing
         for i in range(len(images) - 1):
             fi = (test_prop in images[i]["properties"])  # first image
 
@@ -127,25 +141,33 @@ class Testing:
                                      self.tests_passed_in_total, self.last_progress + local_progress)
 
                 print(i, j, expected_result, actual_result)
-
-        text = "Simple testing is a testing method that uses images in which the person's face is clearly legible \n\n"
-        text += "Simple testing results:\n\n"
-        text += "Total number of tests: " + str(tests_in_total) + "\n"
-        text += "Tests passed: " + str(tests_in_total - self.failed_tests_in_sections_count[self.current_section_number - 1]) + "\n"
-        text += "Tests failed: " + str(self.failed_tests_in_sections_count[self.current_section_number - 1]) + "\n"
-        self.texts_for_results.append(text)
+        self.add_result_text(option, tests_in_total)
 
     def set_results(self):
         self.ui_results.firstStatValue.setText(str(self.sections_in_total))
         self.ui_results.secondStatValue.setText(str(self.tests_passed_in_total))
         self.ui_results.thirdStatValue.setText(str(sum(self.failed_tests_in_sections_count)))
+
         self.ui_results.sectionsComboBox.clear()
         self.ui_results.sectionsComboBox.addItems(self.current_testing_options)
+        self.ui_results.sectionsComboBox.setCurrentIndex(0)
+        self.ui_results.sectionsComboBox.currentIndexChanged.connect(self.result_item_changed)
+
         self.ui_results.resultsTextEdit.setText(self.texts_for_results[0])
         self.ui_results.firstImage.setPixmap(QPixmap(self.images_dir + "test_image_1.jpg"))
         self.ui_results.secondImage.setPixmap(QPixmap(self.images_dir + "test_image_2.jpg"))
 
-        self.ui_results.sectionsComboBox.changeEvent()
+    def add_result_text(self, option: str, tests_in_total: int):
+        text = self.INITIAL_TEXTS_FOR_RESULTS[option]
+        text += option + " results:\n"
+        text += "Total number of tests: " + str(tests_in_total) + "\n"
+        text += "Tests passed: " + str(
+            tests_in_total - self.failed_tests_in_sections_count[self.current_section_number - 1]) + "\n"
+        text += "Tests failed: " + str(self.failed_tests_in_sections_count[self.current_section_number - 1]) + "\n"
+        self.texts_for_results.append(text)
+
+    def result_item_changed(self, index: int):
+        self.ui_results.resultsTextEdit.setText(self.texts_for_results[index])
 
     def calculate_local_progress(self, tests_left_in_section: int, tests_in_section: int):
         return ((tests_in_section - tests_left_in_section) * 100) // tests_in_section // self.sections_in_total
