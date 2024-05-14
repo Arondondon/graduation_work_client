@@ -60,3 +60,11 @@ class ServerConnection:
 
         return list(map(dict, res))
 
+    def get_images_for_testing_by_option(self, option: str):
+        res = requests.get(self.server_url + "get-images-info-by-testing-option/" + option).json()
+        return list(map(dict, res))
+
+    def get_count_of_images_by_property(self, prop: str) -> int:
+        res = requests.get(self.server_url + "get-count-of-images-by-property/" + prop).json()
+        return dict(res)["value"]
+
